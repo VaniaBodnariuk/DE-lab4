@@ -18,10 +18,16 @@ def generate_ddl_files_from_csv(csv_files):
 def __generate_table_create_script(reader, table_name):
     sample_row = next(reader)
     columns = {column: __determine_data_type(sample_row[column]) for column in sample_row}
-    create_script = __generate_basic_table_create_script(table_name, columns)
+    create_script = generate_comment(table_name)
+    create_script += __generate_basic_table_create_script(table_name, columns)
     if table_name == "transactions":
         create_script += __generate_indexed_foreign_key_script(table_name, "product_id", "products", "product_id")
         create_script += __generate_indexed_foreign_key_script(table_name, "account_id", "accounts", "customer_id")
+    return create_script
+
+
+def generate_comment(table_name):
+    create_script = f"-- The SQL script is generated for {table_name}.csv by ddl_scripts_generator.py\n"
     return create_script
 
 

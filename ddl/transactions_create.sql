@@ -1,3 +1,4 @@
+-- The SQL script is generated for transactions.csv by ddl_scripts_generator.py
 CREATE TABLE IF NOT EXISTS transactions (
     transaction_id TEXT,
      transaction_date DATE,

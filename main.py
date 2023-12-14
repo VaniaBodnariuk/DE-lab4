@@ -24,7 +24,7 @@ LAB_DB_CONFIG = {
 def main():
     csv_files = scan_csv_files()
     generate_ddl_files_from_csv(csv_files)
-    generate_populated_db(csv_files)
+    # generate_populated_db(csv_files)
 
 def scan_csv_files():
     csv_files = glob.glob(f'data/*.csv', recursive=True)
